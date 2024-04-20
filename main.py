@@ -18,7 +18,7 @@ class cryptage:
             "4":["9QS","MLW","9QE","JET"],"5":["FGH","7DX","FDT","OKE"],"6":["SQD","CEO","09Q","83F"],
             "7":["PA4","CBO","NAR","B3W"],"8":["PER","QS4","A45","BBC"],"9":["UW8","TRZ","LOG","QS5"],
             "":["EXP","AF0","KA9","SD9"],"é":["NAL","94H","FJ8","LA7"],"è":["NAC","AGY","9DP","A7P"],
-            "ç":["PQS","S04","MLP",""],"à":["MER","K4T","WI5","95S"],'"':["DV1","W5Q"],
+            "ç":["PQS","S04","MLP","PQ4"],"à":["MER","K4T","WI5","95S"],'"':["DV1","W5Q"],"â":["58X","849","HTR","7U6"],
             "'":["HEV","8A6"],"(":["8A6","KM0"],"§":["KM0","NE8"],
             "'":["7I5","9RE"],"(":["XXF","G40"],"§":["SSR","VQ8"],
             "&":["57W","HJ6"],"!":["QO8","GQS"],"$":["SRS","7EB"],
@@ -111,4 +111,4 @@ class cryptage:
 txt = cryptage()
 txt.encrypt_data("normal_text.txt","scrypted_text.txt")
 txt.decrypt_data("scrypted_text.txt","scryptToText.txt")
-# txt.create_patern(("'","(","§","&","!","$",",",";",":","=","?",".","/","+","-","*","µ","%"),2)
+txt.create_patern(("â"),4)
