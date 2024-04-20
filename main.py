@@ -19,14 +19,13 @@ class cryptage:
             "7":["PA4","CBO","NAR","B3W"],"8":["PER","QS4","A45","BBC"],"9":["UW8","TRZ","LOG","QS5"],
             "":["EXP","AF0","KA9","SD9"],"é":["NAL","94H","FJ8","LA7"],"è":["NAC","AGY","9DP","A7P"],
             "ç":["PQS","S04","MLP","PQ4"],"à":["MER","K4T","WI5","95S"],'"':["DV1","W5Q"],"â":["58X","849","HTR","7U6"],
-            "'":["HEV","8A6"],"(":["8A6","KM0"],"§":["KM0","NE8"],
-            "'":["7I5","9RE"],"(":["XXF","G40"],"§":["SSR","VQ8"],
-            "&":["57W","HJ6"],"!":["QO8","GQS"],"$":["SRS","7EB"],
-            ",":["MKQ","3MO"],";":["41L","EIM"],":":["YTY","VMM"],
-            "=":["QKD","DQO"],"?":["AUX","1BJ"],".":["2SX","WEG"],
-            "/":["FQM","ZCR"],"+":["G0P","QYN"],"-":["Y6B","188"],
-            "*":["Q7X","61X"],"µ":["BG3","2UL"],"%":["II3","SR3"],
-        }
+            "'":["YXA","UXB"],"(":["2R9","3IY"],"§":["LRX","7DK"],
+            "&":["ILM","HU6"],"!":["3WW","BZR"],"$":["FQ8","X2Z"],
+            ",":["VZD","GXP"],";":["7Q8","KO5"],":":["AUT","DG0"],
+            "=":["2WZ","J8B"],"?":["503","91A"],".":["T4P","T16"],
+            "/":["DCJ","6M4"],"+":["B5L","RLX"],"-":["471","VG6"],
+            "*":["28K","OGT"],"µ":["RCM","KWU"],"%":["MQD","CZV"],
+                    }
         
         self.basic_carac = ("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9") 
     
@@ -35,17 +34,23 @@ class cryptage:
         i=0
         tab=[]
         count = 0
-        while i != len(new_caract)*nbr_patern: # index, nombre de patern à faire pour chaques caract
+        while i != len(new_caract)*nbr_patern: #création d'un nombre de code égale aux nombres de nouveaux caract * nbr de patern voulu par caract
             new_patern = ""
-            for j in range(3):
-                new_patern += choice(self.basic_carac).upper()
-            if new_patern not in self.patern and new_patern not in tab:
+            for j in range(3): #tourne 3 fois pour chaques lettre des codes
+                new_patern += choice(self.basic_carac).upper() #choix d'un caractère au hasard dans self.basic_carac
+            validation = 1
+            for letter in self.patern:
+                for code in self.patern[letter]:
+                    if code == new_patern:
+                        validation = 0
+            if validation and new_patern not in tab: #si le code inventé n'est pas dans self.patern ni dans la variable tab
                 tab.append(new_patern)
                 i+=1
+               
         for caract in new_caract: #pour tous les nouveaux caract
             new_patern = ""
             for i in range(nbr_patern): #nombre de code par patern
-                if i != nbr_patern-1:
+                if i != nbr_patern-1: # si on est pas au dernier code du patern
                     new_patern += '"%s",'%(tab[count+i])
                 else:
                     new_patern += '"%s"'%(tab[count+i])
@@ -76,6 +81,7 @@ class cryptage:
                             crypted_txt += i.lower()
                         else:
                             crypted_txt += i
+        
                     
         with open(fileToWrite,'w') as f:
             f.write(crypted_txt)
@@ -111,4 +117,5 @@ class cryptage:
 txt = cryptage()
 txt.encrypt_data("normal_text.txt","scrypted_text.txt")
 txt.decrypt_data("scrypted_text.txt","scryptToText.txt")
-txt.create_patern(("â"),4)
+txt.create_patern(("'","(","§","'","(","§","&","!","$",",",";",":","=","?",".","/","+","-","*","µ","%"),2)
+
