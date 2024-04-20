@@ -18,12 +18,12 @@ class cryptage:
                        "7":["PA4","CBO","NAR","B3W"],"8":["PER","QS4","A45","BBC"],"9":["UW8","TRZ","LOG","QS5"],
                        "":["EXP","AF0","KA9","SD9"]
                     }
+        
 
     def encrypt_data(self,fileToRead,fileToWrite):
         crypted_txt = ""
-        with open(fileToRead,'r') as f:
+        with open(fileToRead,'r', encoding='utf-8') as f:
             data = f.read()
-        
         for words in data: #parcour des mots dans le fichier txt
             caract = ''.join(words.split()) #sépration de toutes les lettres 
             for letter in self.patern:
@@ -40,6 +40,7 @@ class cryptage:
                             crypted_txt += i.lower()
                         else:
                             crypted_txt += i
+                    
         with open(fileToWrite,'w') as f:
             f.write(crypted_txt)
 
