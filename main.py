@@ -88,7 +88,7 @@ class cryptage:
 
     def decrypt_data(self,fileToRead,fileToWrite):
         decrypted_txt = ""
-        with open(fileToRead,'r') as f:
+        with open(fileToRead,'r', encoding='utf-8') as f:
             data = f.read()
         readed_data = ''.join(data)
         count = 0
@@ -107,15 +107,12 @@ class cryptage:
                                 decrypted_txt += i
             count +=3
         
-        with open(fileToWrite,'w') as f:
+        with open(fileToWrite,'w', encoding='utf-8') as f:
             f.write(decrypted_txt)
 
             
-
-
-
 txt = cryptage()
 txt.encrypt_data("normal_text.txt","scrypted_text.txt")
 txt.decrypt_data("scrypted_text.txt","scryptToText.txt")
-txt.create_patern(("'","(","§","'","(","§","&","!","$",",",";",":","=","?",".","/","+","-","*","µ","%"),2)
+txt.create_patern(("'","(","§","'","(","§","&","!","$",",",";",":","=","?",".","/","+","-","*","µ","%"),9)
 
